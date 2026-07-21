@@ -1,0 +1,8 @@
+lightgbm>=4.3
+scikit-learn>=1.5
+statsmodels>=0.14
+pandas>=2.2
+numpy>=1.26
+scipy>=1.13
+matplotlib>=3.9
+joblib>=1.4

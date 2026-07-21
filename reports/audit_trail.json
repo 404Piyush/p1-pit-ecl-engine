@@ -1,0 +1,111 @@
+{
+  "run_timestamp_utc": "2026-07-21T18:27:23",
+  "seed": 42,
+  "n_loans": 5021,
+  "n_paths": 200,
+  "data_hashes": {
+    "loans": "a3a819396079",
+    "macro": "1d5f16615160"
+  },
+  "redaction": {
+    "salt_set": true,
+    "columns_redacted_loans": []
+  },
+  "model_metrics": {
+    "auc_raw": 0.6058760929835786,
+    "auc_calibrated": 0.6058760929835786,
+    "brier_raw": 0.09199735090164585,
+    "brier_calibrated": 0.09226107502260278,
+    "selected_calibrator": "platt",
+    "isotonic_brier": 0.09295372526338538,
+    "isotonic_auc": 0.5768554062699935
+  },
+  "vasicek": {
+    "rho": 0.05,
+    "pd_ttc": 0.05,
+    "observed_dr_std": 0.0151688504618016,
+    "z_min": -1.653748151259647,
+    "z_max": 1.6457756081183446
+  },
+  "var": {
+    "lag_order": 1,
+    "aic": -59.08957579690368,
+    "bic": -58.55537705849462,
+    "default_rate_forecast_baseline_24m_mean": 0.04887843105426015,
+    "default_rate_forecast_adverse_24m_mean": 0.033878431054260146
+  },
+  "markov": {
+    "source": "synthetic",
+    "shape": [
+      8,
+      8
+    ],
+    "lifetime_pd_A_5y": 0.4749670504091914,
+    "lifetime_pd_G_5y": 0.42381253236187255,
+    "lifetime_pd_C_3y": 0.259448409046936
+  },
+  "ornstein_uhlenbeck": {
+    "theta": 3.154567697545405,
+    "mu": -0.17203367164759792,
+    "sigma": 1.6202063940481588
+  },
+  "pd_curves": {
+    "pd_12m_baseline_mean": 0.051135938536247004,
+    "pd_12m_adverse_mean": 0.09786657012179929,
+    "pd_5y_baseline": [
+      0.051135938536247004,
+      0.05211238092089984,
+      0.05096927015975895,
+      0.0517512603423263,
+      0.05320301125057255
+    ],
+    "pd_5y_adverse": [
+      0.09786657012179925,
+      0.10014281514986617,
+      0.0979917867491605,
+      0.09966774435042618,
+      0.10352579129946016
+    ]
+  },
+  "stress": {
+    "baseline_provisions_mean": 3257985.69944996,
+    "adverse_provisions_mean": 6248282.392611479,
+    "baseline_std": 747355.2766791019,
+    "adverse_std": 1142725.3808064354,
+    "static_ttc_provisions_total": 2262861.491740497,
+    "realised_adverse_losses_mean": 4934504.832032036,
+    "adverse_coverage_ratio_pit": 1.2662430386228698,
+    "adverse_coverage_ratio_ttc": 0.4585792432608982,
+    "forecast_error_pit": 0.2662430386228698,
+    "forecast_error_ttc": 0.5414207567391018,
+    "forecast_error_reduction_pct": 50.8251142371392
+  },
+  "stage_breakdown": {
+    "baseline_s1": 4500,
+    "baseline_s2": 234,
+    "baseline_s3": 287,
+    "adverse_s1": 4500,
+    "adverse_s2": 234,
+    "adverse_s3": 287
+  },
+  "reporting_panel": {
+    "n_reporting_dates": 8,
+    "panel_rows": 40168,
+    "final_total_ecl_inr": 8238173.878675634,
+    "stage_trend_ecl_total": {
+      "Q1": 4811840.459619676,
+      "Q2": 5293740.040128463,
+      "Q3": 5777992.528191601,
+      "Q4": 6264694.302710626,
+      "Q5": 6753948.514900964,
+      "Q6": 7245865.771710964,
+      "Q7": 7740564.91028033,
+      "Q8": 8238173.878675634
+    }
+  },
+  "diagnostic_term_structure_cumulative": [
+    0.085,
+    0.211087,
+    0.288874
+  ]
+}

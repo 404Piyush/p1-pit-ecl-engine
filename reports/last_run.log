@@ -1,0 +1,142 @@
+[1/9] Generating synthetic loans + macroeconomic series...
+       loans=8,000  default_rate=10.85%  macro_paths=180
+[2/9] Engineering features and splitting train / test...
+       train=2,533  valid=446  test=5,021
+[3/9] Training LightGBM with Platt scaling...
+       test AUC raw=0.6059  cal=0.6059  Brier raw=0.0920  cal=0.0923
+[4/9] Vasicek systematic factor from observed default rate series...
+       rho=0.0500  PD_TTC=0.0500  sigma_DR_obs=0.0152  Z range=[-1.65, +1.65]
+[5/9] Fitting Ornstein-Uhlenbeck (mean-reverting Z_t) by MLE...
+       theta=3.1546  mu=-0.1720  sigma=1.6202
+[6/9] Simulating 200 OU paths (60 monthly steps) for baseline + adverse...
+       mean 12m PD: baseline=0.0511  adverse=0.0979  (scenario mean of 200 paths)
+       mean 5y PD curve baseline : [0.0511, 0.0521, 0.051, 0.0518, 0.0532]
+       mean 5y PD curve adverse  : [0.0979, 0.1001, 0.098, 0.0997, 0.1035]
+       stage mix baseline = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+       stage mix adverse  = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+[7/9] Computing per-loan LGD, EAD, ECL across path grids...
+[8/9] Provisioning totals (mean-path): baseline=S1=2,042,789  S2=487,856  S3=727,340 | adverse=S1=3,909,594  S2=938,895  S3=1,399,793
+       path-wise std: baseline=747,355  adverse=1,142,725
+       realised adverse losses mean        : INR 4,934,505
+       PiT coverage ratio  (adv.)         : 1.266
+       TTC coverage ratio  (adv.)         : 0.459
+       forecast-error reduction           : 50.83%
+[9/9] Writing artefacts...
+       wrote C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\data\ecl_output.csv and C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\reports\audit_trail.json
+
+================================================================
+FINAL SUMMARY
+================================================================
+  AUC (Platt-calibrated)        : 0.6059
+  Brier (Platt-calibrated)      : 0.0923
+  Vasicek rho                   : 0.0500
+  OU mean-reversion theta       : 3.1546
+  Baseline provisions mean      : INR 3,257,986
+  Adverse provisions mean       : INR 6,248,282
+  Realised adverse losses (mean): INR 4,934,505
+  Static-TTC provisions total   : INR 2,262,861
+  PiT coverage ratio (adv)      : 1.266
+  TTC coverage ratio (adv)      : 0.459
+  Forecast-error reduction      : 50.83%
+================================================================
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\pipeline.py", line 442, in <module>
+    run()
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\pipeline.py", line 218, in run
+    var_fit = fit_var(macro)
+              ^^^^^^^^^^^^^^
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\var_macro.py", line 50, in fit_var
+    data = macro[cols].astype(float).copy()
+           ~~~~~^^^^^^
+  File "C:\Users\piyus\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\piyus\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "C:\Users\piyus\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['unemployment_rate'] not in index"
+[1/12] Generating synthetic loans + macroeconomic series...
+       loans=8,000  default_rate=10.85%  macro_paths=180
+[2/12] Engineering features and splitting train / test...
+       train=2,533  valid=446  test=5,021
+[3/12] Training LightGBM and comparing Platt vs Isotonic calibration...
+       test AUC raw=0.6059  best-cal AUC=0.6059  Brier raw=0.0920  best-cal Brier=0.0923  calibrator=platt
+[4/12] Vasicek systematic factor from observed default rate series...
+       rho=0.0500  PD_TTC=0.0500  sigma_DR_obs=0.0152  Z range=[-1.65, +1.65]
+[5/12] Fitting Ornstein-Uhlenbeck (mean-reverting Z_t) by MLE...
+       theta=3.1546  mu=-0.1720  sigma=1.6202
+[6/12] Simulating 200 OU paths (60 monthly steps) for baseline + adverse...
+       mean 12m PD: baseline=0.0511  adverse=0.0979  (scenario mean of 200 paths)
+       mean 5y PD curve baseline : [0.0511, 0.0521, 0.051, 0.0518, 0.0532]
+       mean 5y PD curve adverse  : [0.0979, 0.1001, 0.098, 0.0997, 0.1035]
+       stage mix baseline = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+       stage mix adverse  = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+[7/12] Fitting VAR(p) on macro panel for forward default-rate forecasts...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\pipeline.py", line 442, in <module>
+    run()
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\pipeline.py", line 231, in run
+    markov = fit_markov_matrix(loans, pd_by_grade)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\markov.py", line 143, in fit_markov_matrix
+    M = _synthetic_matrix_from_ttc(pd_by_grade)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\src\markov.py", line 95, in _synthetic_matrix_from_ttc
+    M[n, :] = 0.0
+    ~^^^^^^
+IndexError: index 7 is out of bounds for axis 0 with size 7
+[1/12] Generating synthetic loans + macroeconomic series...
+       loans=8,000  default_rate=10.85%  macro_paths=180
+[2/12] Engineering features and splitting train / test...
+       train=2,533  valid=446  test=5,021
+[3/12] Training LightGBM and comparing Platt vs Isotonic calibration...
+       test AUC raw=0.6059  best-cal AUC=0.6059  Brier raw=0.0920  best-cal Brier=0.0923  calibrator=platt
+[4/12] Vasicek systematic factor from observed default rate series...
+       rho=0.0500  PD_TTC=0.0500  sigma_DR_obs=0.0152  Z range=[-1.65, +1.65]
+[5/12] Fitting Ornstein-Uhlenbeck (mean-reverting Z_t) by MLE...
+       theta=3.1546  mu=-0.1720  sigma=1.6202
+[6/12] Simulating 200 OU paths (60 monthly steps) for baseline + adverse...
+       mean 12m PD: baseline=0.0511  adverse=0.0979  (scenario mean of 200 paths)
+       mean 5y PD curve baseline : [0.0511, 0.0521, 0.051, 0.0518, 0.0532]
+       mean 5y PD curve adverse  : [0.0979, 0.1001, 0.098, 0.0997, 0.1035]
+       stage mix baseline = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+       stage mix adverse  = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+[7/12] Fitting VAR(p) on macro panel for forward default-rate forecasts...
+       lag_order=1  AIC=-59.09  BIC=-58.56
+[8/12] Building Markov rating-migration matrix (TTC lifetime PD by grade)...
+[1/12] Generating synthetic loans + macroeconomic series...
+       loans=8,000  default_rate=10.85%  macro_paths=180
+[2/12] Engineering features and splitting train / test...
+       train=2,533  valid=446  test=5,021
+[3/12] Training LightGBM and comparing Platt vs Isotonic calibration...
+       test AUC raw=0.6059  best-cal AUC=0.6059  Brier raw=0.0920  best-cal Brier=0.0923  calibrator=platt
+[4/12] Vasicek systematic factor from observed default rate series...
+       rho=0.0500  PD_TTC=0.0500  sigma_DR_obs=0.0152  Z range=[-1.65, +1.65]
+[5/12] Fitting Ornstein-Uhlenbeck (mean-reverting Z_t) by MLE...
+       theta=3.1546  mu=-0.1720  sigma=1.6202
+[6/12] Simulating 200 OU paths (60 monthly steps) for baseline + adverse...
+       mean 12m PD: baseline=0.0511  adverse=0.0979  (scenario mean of 200 paths)
+       mean 5y PD curve baseline : [0.0511, 0.0521, 0.051, 0.0518, 0.0532]
+       mean 5y PD curve adverse  : [0.0979, 0.1001, 0.098, 0.0997, 0.1035]
+       stage mix baseline = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+       stage mix adverse  = {'stage1_pct': 0.8962358095996813, 'stage2_pct': 0.04660426209918343, 'stage3_pct': 0.057159928301135234, 'n': 5021}
+[7/12] Fitting VAR(p) on macro panel for forward default-rate forecasts...
+       lag_order=1  AIC=-59.09  BIC=-58.56
+[8/12] Building Markov rating-migration matrix (TTC lifetime PD by grade)...
+       source=synthetic  states=8  5y-PD for A=0.4750  5y-PD for G=0.4238
+[9/12] Computing per-loan LGD, EAD, ECL across path grids...
+[10/12] Provisioning totals (mean-path): baseline=S1=2,042,789  S2=487,856  S3=727,340 | adverse=S1=3,909,594  S2=938,895  S3=1,399,793
+       path-wise std: baseline=747,355  adverse=1,142,725
+       realised adverse losses mean        : INR 4,934,505
+       PiT coverage ratio  (adv.)         : 1.266
+       TTC coverage ratio  (adv.)         : 0.459
+       forecast-error reduction           : 50.83%
+[11/12] Simulating 8-quarter Ind AS 109 reporting panel...
+       reporting_dates=8  panel_rows=40,168  final-EAD-INR=8,238,174
+[12/12] Writing artefacts...
+       wrote C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\data\ecl_output.csv, reporting_panel.csv and C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine\reports\audit_trail.json
