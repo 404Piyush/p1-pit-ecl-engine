@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+# Markdown always LF
+*.md text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.ipynb merge=union
+
+# Python
+*.py diff=python

@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "PiT-ECL Engine"
+version: "0.3.0"
+date-released: "2026-07-22"
+license: MIT
+authors:
+  - family-names: "Piyush"
+    given-names: ""
+    affiliation: "Independent Researcher"
+    orcid: ""
+keywords:
+  - credit-risk
+  - expected-credit-loss
+  - ind-as-109
+  - ifrs9
+  - vasicek-model
+  - ornstein-uhlenbeck
+  - lightgbm
+  - calibration
+  - markov-migration
+  - vector-autoregression
+references:
+  - type: standard
+    title: "Ind AS 109 — Financial Instruments"
+    publisher: "Ministry of Corporate Affairs, Government of India"
+    year: 2018
+  - type: article
+    title: "The Valuation of Credit Derivatives and Other Defaultable Assets"
+    author:
+      - family-names: "Vasicek"
+        given-names: "Oldrich"
+    journal: "Credit Derivatives and Structured Credit Markets"
+    year: 2002
+  - type: article
+    title: "On the Distribution of the Occupation Time of an Ornstein-Uhlenbeck Process"
+    author:
+      - family-names: "Leblanc"
+        given-names: "A."
+    journal: "Bernoulli"
+    year: 1997
+  - type: book
+    title: "Credit Risk: Pricing, Measurement, and Management"
+    author:
+      - family-names: "Lando"
+        given-names: "David"
+    publisher: "Princeton University Press"
+    year: 2004
