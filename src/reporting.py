@@ -91,7 +91,7 @@ def simulate_reporting_panel(
     n_loans = len(loans)
 
     # Pre-compute loan-level constants once
-    origination_pd = compute_origination_pd(loans["default_12m"].values)
+    origination_pd = compute_origination_pd(loans["default_12m"].values, grade_arr=loans["grade"].values)
     lgds = np.array([default_lgd_by_grade(g) for g in loans["grade"].values])
     eads = ead_for_loan(loans["loan_amnt"].values.astype(float), accrued_interest=0.02)
     eirs = loans["int_rate"].values.astype(float)

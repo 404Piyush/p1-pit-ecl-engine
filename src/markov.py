@@ -50,17 +50,22 @@ def _bootstrap_matrix(observed: pd.DataFrame, default_grade: str = "G") -> np.nd
     """Estimate transition counts then normalise to row-stochastic matrix.
 
     `observed` must contain columns `grade` and `next_grade`.
+
+    Returns an (n_states, n_states) square matrix where n_states = len(GRADES) + 1
+    (the +1 is the absorbing default state). The default column is the last column.
     """
     grades = GRADES
     counts = pd.crosstab(observed["grade"], observed["next_grade"]).reindex(
         index=grades, columns=grades, fill_value=0
     )
-    if default_grade not in counts.columns:
-        counts[default_grade] = 0
-    counts = counts[grades]
-    counts[default_grade] = counts[default_grade] + 0  # noqa: ensure column order
-    matrix = counts.values.astype(float) + 1e-6
-    default_col = grades.index(default_grade)
+    counts = counts[grades]  # ensure column order matches grade list
+    counts = counts.reindex(index=grades, fill_value=0)
+
+    n = len(grades)
+    n_states = n + 1
+    matrix = np.zeros((n_states, n_states))
+    matrix[:n, :n] = counts.values.astype(float) + 1e-6
+    default_col = n  # default state lives at column index n (= last)
     return _clamp_transitions(matrix, default_col)
 
 

@@ -1,5 +1,5 @@
 {
-  "run_timestamp_utc": "2026-07-21T18:27:23",
+  "run_timestamp_utc": "2026-07-21T18:39:38",
   "seed": 42,
   "n_loans": 5021,
   "n_paths": 200,
@@ -68,39 +68,39 @@
     ]
   },
   "stress": {
-    "baseline_provisions_mean": 3257985.69944996,
-    "adverse_provisions_mean": 6248282.392611479,
-    "baseline_std": 747355.2766791019,
-    "adverse_std": 1142725.3808064354,
+    "baseline_provisions_mean": 6617278.364214735,
+    "adverse_provisions_mean": 18656324.05563348,
+    "baseline_std": 969111.3598459316,
+    "adverse_std": 2226946.1882225685,
     "static_ttc_provisions_total": 2262861.491740497,
     "realised_adverse_losses_mean": 4934504.832032036,
-    "adverse_coverage_ratio_pit": 1.2662430386228698,
+    "adverse_coverage_ratio_pit": 3.7807894997948113,
     "adverse_coverage_ratio_ttc": 0.4585792432608982,
-    "forecast_error_pit": 0.2662430386228698,
+    "forecast_error_pit": 2.7807894997948113,
     "forecast_error_ttc": 0.5414207567391018,
-    "forecast_error_reduction_pct": 50.8251142371392
+    "forecast_error_reduction_pct": 0.0
   },
   "stage_breakdown": {
-    "baseline_s1": 4500,
-    "baseline_s2": 234,
+    "baseline_s1": 1841,
+    "baseline_s2": 2893,
     "baseline_s3": 287,
-    "adverse_s1": 4500,
-    "adverse_s2": 234,
+    "adverse_s1": 19,
+    "adverse_s2": 4715,
     "adverse_s3": 287
   },
   "reporting_panel": {
     "n_reporting_dates": 8,
     "panel_rows": 40168,
-    "final_total_ecl_inr": 8238173.878675634,
+    "final_total_ecl_inr": 38530589.592285514,
     "stage_trend_ecl_total": {
-      "Q1": 4811840.459619676,
-      "Q2": 5293740.040128463,
-      "Q3": 5777992.528191601,
-      "Q4": 6264694.302710626,
-      "Q5": 6753948.514900964,
-      "Q6": 7245865.771710964,
-      "Q7": 7740564.91028033,
-      "Q8": 8238173.878675634
+      "Q1": 22250517.169546638,
+      "Q2": 24516342.160817817,
+      "Q3": 26800771.498555463,
+      "Q4": 29104565.74498731,
+      "Q5": 31428538.844032943,
+      "Q6": 33773563.50391779,
+      "Q7": 36140577.29637106,
+      "Q8": 38530589.592285514
     }
   },
   "diagnostic_term_structure_cumulative": [

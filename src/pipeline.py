@@ -193,7 +193,7 @@ def run(seed: int = 42, n_loans: int = 8000, n_months: int = 180, write_outputs:
 
     diag = term_structure_diagnostic()
 
-    origination_pd = compute_origination_pd(test["default_12m"].values)
+    origination_pd = compute_origination_pd(test["default_12m"].values, grade_arr=test["grade"].values)
     pd_test_baseline = predict_test_pit(fit.model, fit.calibrator, test)
     pi12_baseline = float(pd_baseline[:, 0].mean())
     pi12_adverse = float(pd_adverse[:, 0].mean())

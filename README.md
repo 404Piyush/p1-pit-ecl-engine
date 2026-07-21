@@ -29,6 +29,9 @@ data lineage.
 | Phase 2 — Deterministic PII redaction (PAN/Aadhaar/mobile/email/account) | ✅ wired + tested |
 | Phase 2 — Notebooks 02-06 | ✅ generated |
 | Security audit (`bandit`, `pip_audit`, manual) | ✅ `SECURITY_AUDIT.md` (8 findings, 6 Phase-3 recommendations) |
+| **Phase 3 — pytest suite (32 tests)** | ✅ **32/32 passing** |
+| Phase 3 — Staging bug fix (per-grade origination PD) | ✅ baseline S2=58%, adverse S2=94% (now differentiated) |
+| Phase 3 — GitHub Actions CI | ✅ `.github/workflows/ci.yml` (pytest + bandit + pip_audit) |
 
 ---
 

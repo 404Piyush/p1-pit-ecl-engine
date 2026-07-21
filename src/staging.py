@@ -8,11 +8,17 @@ The SICR criterion replaces a static DPD threshold with a relative
 point-in-time movement in the lifetime default probability:
 
     SICR iff  PiT_LifetimePD / OriginationPD > threshold
+
+The origination PD must be a *per-grade* calibrated rate (industry
+practice). Using raw per-loan default flags makes the SICR ratio
+degenerate to {0, infinity} and prevents the staging engine from
+differentiating baseline vs. adverse macro scenarios.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -30,13 +36,32 @@ class StagingDecision:
     pit_lifetime_pd: np.ndarray
 
 
-def compute_origination_pd(default_12m_arr: np.ndarray) -> np.ndarray:
-    """Bookkeeping origination PD: empirical 12-month default rate at vintage.
+def compute_origination_pd(
+    default_12m_arr: np.ndarray,
+    grade_arr: Optional[np.ndarray] = None,
+    fallback_rate: float = 0.05,
+) -> np.ndarray:
+    """Per-loan origination PD.
 
-    On a real book this is a calibrated per-grade PD. Here we use grade-level
-    averages to stay leakage-free at origination time.
+    If `grade_arr` is supplied we return the *per-grade* mean default
+    rate — the industry-standard proxy for "origination PD" because it
+    is leakage-free (no future default flag is observed at origination
+    time) and granular enough to make the SICR ratio well-defined.
+
+    If `grade_arr` is omitted we fall back to a flat rate
+    (`fallback_rate`) for every loan, which is the conservative
+    single-grade assumption.
+
+    A flat per-loan 0/1 default flag is intentionally **not** a valid
+    input here — see the module docstring for why.
     """
-    return np.asarray(default_12m_arr, dtype=float)
+    default_arr = np.asarray(default_12m_arr, dtype=float)
+    if grade_arr is None:
+        return np.full_like(default_arr, fallback_rate)
+    grade_arr = np.asarray(grade_arr)
+    df = pd.DataFrame({"g": grade_arr, "d": default_arr})
+    grade_pd = df.groupby("g")["d"].mean().to_dict()
+    return np.array([float(grade_pd.get(g, fallback_rate)) for g in grade_arr], dtype=float)
 
 
 def assign_stages(

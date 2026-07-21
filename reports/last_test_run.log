@@ -1,0 +1,42 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.4, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\piyus\AppData\Local\Programs\Python\Python311\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\piyus\OneDrive\Desktop\p1-pit-ecl-engine
+plugins: anyio-3.7.1, asyncio-1.1.0, typeguard-4.4.3
+asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 32 items
+
+tests/test_all.py::TestPDTermStructure::test_marginal_to_cumulative_matches_brief PASSED [  3%]
+tests/test_all.py::TestPDTermStructure::test_survival_form_identity PASSED [  6%]
+tests/test_all.py::TestPDTermStructure::test_roundtrip_marginal_cumulative PASSED [  9%]
+tests/test_all.py::TestPDTermStructure::test_discount_factors_monotone_decreasing PASSED [ 12%]
+tests/test_all.py::TestVasicek::test_systematic_factor_finite PASSED     [ 15%]
+tests/test_all.py::TestVasicek::test_conditional_pd_in_unit_interval PASSED [ 18%]
+tests/test_all.py::TestVasicek::test_higher_systematic_factor_lowers_pd PASSED [ 21%]
+tests/test_all.py::TestVasicek::test_fit_vasicek_returns_finite_z PASSED [ 25%]
+tests/test_all.py::TestVasicek::test_calibrate_rho_in_unit_interval PASSED [ 28%]
+tests/test_all.py::TestOrnsteinUhlenbeck::test_fit_ou_recovers_sane_parameters PASSED [ 31%]
+tests/test_all.py::TestOrnsteinUhlenbeck::test_simulate_ou_shape PASSED  [ 34%]
+tests/test_all.py::TestStaging::test_per_grade_origination_pd PASSED     [ 37%]
+tests/test_all.py::TestStaging::test_origination_pd_fallback PASSED      [ 40%]
+tests/test_all.py::TestStaging::test_sicr_threshold_triggers_stage2 PASSED [ 43%]
+tests/test_all.py::TestStaging::test_dpd_over_90_forces_stage3 PASSED    [ 46%]
+tests/test_all.py::TestStaging::test_dpd_30_to_90_forces_stage2 PASSED   [ 50%]
+tests/test_all.py::TestStaging::test_breakdown_sums_to_one PASSED        [ 53%]
+tests/test_all.py::TestStaging::test_stage_mix_differentiates_baseline_vs_adverse PASSED [ 56%]
+tests/test_all.py::TestMarkov::test_synthetic_matrix_is_row_stochastic PASSED [ 59%]
+tests/test_all.py::TestMarkov::test_lifetime_pd_increases_with_horizon PASSED [ 62%]
+tests/test_all.py::TestMarkov::test_default_state_is_absorbing PASSED    [ 65%]
+tests/test_all.py::TestRedact::test_redact_pan_mask_format PASSED        [ 68%]
+tests/test_all.py::TestRedact::test_redact_aadhaar_keeps_last_four PASSED [ 71%]
+tests/test_all.py::TestRedact::test_redact_mobile_keeps_last_four PASSED [ 75%]
+tests/test_all.py::TestRedact::test_redact_email_keeps_domain PASSED     [ 78%]
+tests/test_all.py::TestRedact::test_redact_email_mask_domain PASSED      [ 81%]
+tests/test_all.py::TestRedact::test_redact_account_keeps_last_four PASSED [ 84%]
+tests/test_all.py::TestRedact::test_redact_determinism_same_salt_same_output PASSED [ 87%]
+tests/test_all.py::TestRedact::test_redact_different_salt_different_output PASSED [ 90%]
+tests/test_all.py::TestRedact::test_sensitive_columns_detection PASSED   [ 93%]
+tests/test_all.py::TestRedact::test_redact_dataframe_columns_inplace PASSED [ 96%]
+tests/test_all.py::TestRedact::test_redact_invalid_inputs_pass_through PASSED [100%]
+
+============================= 32 passed in 1.76s ==============================
