@@ -7,3 +7,12 @@ __pycache__/
 venv/
 *.egg-info/
 .DS_Store
+
+# Test / coverage artefacts
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
