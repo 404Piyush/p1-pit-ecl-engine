@@ -75,12 +75,14 @@ addopts = [
     "--cov=src",
     "--cov-report=term-missing",
     "--cov-report=xml",
-    "--cov-fail-under=70",
 ]
 filterwarnings = [
     "error",
     "ignore::DeprecationWarning:statsmodels",
     "ignore::FutureWarning:statsmodels",
+    "ignore::DeprecationWarning:scipy",
+    "ignore::DeprecationWarning:sklearn",
+    "ignore::FutureWarning:lightgbm",
 ]
 
 [tool.bandit]

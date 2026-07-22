@@ -7,3 +7,16 @@ __pycache__/
 venv/
 *.egg-info/
 .DS_Store
+
+# Test / coverage artefacts
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore

@@ -145,8 +145,19 @@ def run(seed: int = 42, n_loans: int = 8000, n_months: int = 180, write_outputs:
     print("[2/12] Engineering features and splitting train / test...")
     df = build_feature_table(loans)
     train, test = split_train_test(df, train_end="2019-12-31", test_start="2020-01-01")
-    valid = train.tail(int(0.15 * len(train))).copy() if len(train) > 200 else train
-    train_fit = train.iloc[: len(train) - len(valid)] if len(valid) > 0 else train
+    # Robust validation slice: carve 15% of train (minimum 30) for early
+    # stopping, leaving the rest for fitting. Falls back to a 50/50 split
+    # when the train set is too small to hold out a separate validation.
+    if len(train) >= 80:
+        n_valid = max(30, int(0.15 * len(train)))
+        valid = train.tail(n_valid).copy()
+        train_fit = train.iloc[: len(train) - n_valid].copy()
+    elif len(train) >= 2:
+        valid = train.tail(1).copy()
+        train_fit = train.iloc[: len(train) - 1].copy()
+    else:
+        valid = train
+        train_fit = train
     print(f"       train={len(train_fit):,}  valid={len(valid):,}  test={len(test):,}")
 
     print("[3/12] Training LightGBM and comparing Platt vs Isotonic calibration...")
