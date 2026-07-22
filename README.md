@@ -8,7 +8,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: PEP 8](https://img.shields.io/badge/code%20style-PEP%208-orange.svg)](https://peps.python.org/pep-0008/)
-[![Coverage](https://img.shields.io/badge/coverage-70%25%2B-brightgreen.svg)](tests/)
+[![Coverage](https://img.shields.io/badge/coverage-89%25-brightgreen.svg)](tests/)
 [![Security: bandit clean](https://img.shields.io/badge/security-bandit%20clean-green.svg)](SECURITY_AUDIT.md)
 
 **Vasicek-calibrated · OU-simulated · VAR-forecasted · Markov-migrated · Ind AS 109 compliant · CI-tested**
